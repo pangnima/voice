@@ -13,28 +13,24 @@
     <link rel="stylesheet" href="../css/colorpicker.css"> <!-- 컬러 피커-->
     <link rel="stylesheet" href="../css/swiper.min.css"> <!-- 슬라이드 -->
 
+
+    <link rel="stylesheet" href="../css/colorjoe.css">
+    
     
     <!-- js -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <script src="../js/colorpicker.js"></script> <!-- 컬러 피커-->
     <script src="../js/swiper.min.js"></script> <!-- 슬라이드 -->
+    <script src='../js/colorjoe.min.js'></script>
 
     <title>VocievoMall</title>
 
     <script>
     $(document).ready(function(){
 
-        $('#colorpickerHolder').ColorPicker({
-            flat: true
-        });
-
-        $('.colorpicker').on('click' , function(){
-            var bgcolor =$('.colorpicker_new_color').css('background-color')
-            var Xpositoin = $('.colorpicker_color > div > div').css('left');
-            var Ypositoin = $('.colorpicker_color > div > div').css('top');
-            console.log("RGB:",bgcolor)
-            console.log("X:",Xpositoin , "Y",Ypositoin)
-        })
+        colorjoe.rgb('rgbPicker').on('change', function(c) {
+            console.log(c.css())
+        }).update();
 
         var swiper = new Swiper(".swiper-container", {
         effect: "coverflow",
@@ -177,7 +173,6 @@
                     <li><a href="#">KOR</a></li>
                 </ul>
                 <!-- //언어선택 -->
-
                 <div>
                     <!-- 컬러리스트 -->
                     <div class="colorSpectrumList">
@@ -218,10 +213,13 @@
                             <span>Adoption / Criminals / Strong</span>
                         </div>
 
-                        <div class="colorPickerBox" id="colorpickerHolder">
-                            <span class="lightness"><— Voice Lightness —></span>
-                            <span class="saturation"><— Voice Saturation —></span>
+                        <div class="colorPickerBox">
+                            <div id="rgbPicker" class="colorpicker">
+                                <span class="lightness"><— Voice Lightness —></span>
+                                <span class="saturation"><— Voice Saturation —></span>
+                            </div>
                         </div>
+
                     </div>
                     <!-- //컬러리스트 -->
 
@@ -593,4 +591,6 @@
         </footer>
     </div>
 </body>
+
+
 </html>
